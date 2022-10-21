@@ -1,21 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GregListContext } from "./GregContext";
 
-function ListingCard() {
+
+function ListingCard({itemDescription,itemImage,itemLocation,item}) {
+  const {onDeleteCard, onClickFavorite, favorite} = useContext(GregListContext)
+
   return (
     <li className="card">
       <div className="image">
-        <span className="price">$0</span>
-        <img src={"https://via.placeholder.com/300x300"} alt={"description"} />
+        <span className="price"> $0 </span>
+        <img src={itemImage} alt={itemDescription} />
       </div>
       <div className="details">
-        {true ? (
-          <button className="emoji-button favorite active">★</button>
+        {favorite ? (
+          <button
+            className="emoji-button favorite active"
+            onClick={onClickFavorite}>
+            ★
+          </button>
         ) : (
-          <button className="emoji-button favorite">☆</button>
+          <button className="emoji-button favorite" onClick={onClickFavorite}>
+            ☆
+          </button>
         )}
-        <strong>{"description"}</strong>
-        <span> · {"location"}</span>
-        <button className="emoji-button delete">🗑</button>
+        <strong> {itemDescription} </strong> <span> ·{itemLocation} </span>
+        <button className="emoji-button delete" onClick={ () => onDeleteCard(item) }>
+          🗑
+        </button>
       </div>
     </li>
   );

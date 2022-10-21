@@ -1,21 +1,18 @@
-import React from "react";
+import React, { useContext} from "react";
+import { GregListContext } from "./GregContext";
 
 function Search() {
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log("submitted");
-  }
-
+ const {handleSubmit, handleChange, wordSearch} = useContext(GregListContext)
   return (
     <form className="searchbar" onSubmit={handleSubmit}>
       <input
         type="text"
         id="search"
         placeholder="search free stuff"
-        value={""}
-        onChange={(e) => console.log(e.target.value)}
-      />
-      <button type="submit">🔍</button>
+        value={wordSearch}
+        onChange={(e) => handleChange(e)}
+      />{" "}
+      <button type="submit"> 🔍 </button>
     </form>
   );
 }

@@ -1,12 +1,15 @@
 import React from "react";
 import Header from "./Header";
 import ListingsContainer from "./ListingsContainer";
+import { GregListProvider } from "./GregContext";
 
 function App() {
   return (
     <div className="app">
-      <Header />
-      <ListingsContainer />
+      <GregListProvider>
+        <Header />
+        <ListingsContainer />
+      </GregListProvider>
     </div>
   );
 }
